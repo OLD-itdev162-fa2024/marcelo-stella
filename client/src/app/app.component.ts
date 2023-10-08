@@ -8,14 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit{
   title = 'client';
-  weatherForecasts: any;
+  posts: any;
 
   constructor(private http: HttpClient) {
     
   }
   ngOnInit(): void {
-    this.http.get('http://localhost:5211/weatherforecast').subscribe(
-      response => { this.weatherForecasts = response; },
+    this.http.get('http://localhost:5211/api/post').subscribe(
+      response => { this.posts = response; },
       error => {console.log(error)}
     );
   }
