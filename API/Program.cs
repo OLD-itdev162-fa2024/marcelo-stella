@@ -32,14 +32,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope()){
+using (var scope = app.Services.CreateScope())
+{
     var services = scope.ServiceProvider;
-    try {
+    try 
+    {
         var context = services.GetRequiredService<DataContext>();
         context.Database.Migrate();
         Seed.SeedData(context);
     }
-    catch (Exception e) {
+    catch (Exception e) 
+    {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(e, "An error ocurred while seeding the database");
     }
